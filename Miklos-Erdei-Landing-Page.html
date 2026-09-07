@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miklós Erdei — B2B Sales & Account Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper: #F3EFE3;
+    --paper-deep: #EAE4D3;
+    --ink: #1C2A38;
+    --ink-soft: #4C5A67;
+    --ink-faint: #8992A0;
+    --rule: #C9C0A6;
+    --rule-strong: #A79A78;
+    --brass: #A5732B;
+    --brass-deep: #7E5A22;
+    --white: #FBFAF6;
+    --max: 920px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .serif{
+    font-family: 'Spectral', serif;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Letterhead ---------- */
+
+  .letterhead{
+    border-bottom: 1.5px solid var(--ink);
+    padding: 22px 0;
+  }
+
+  .letterhead .wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+  }
+
+  .letterhead .name{
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+  }
+
+  .letterhead .contact{
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .letterhead .contact > *{
+    margin-right: 18px;
+  }
+
+  .letterhead .contact > *:last-child{
+    margin-right: 0;
+  }
+
+  .letterhead .contact a{ text-decoration: none; border-bottom: 1px solid transparent; }
+  .letterhead .contact a:hover{ border-bottom-color: var(--ink-soft); }
+
+  /* ---------- Hero ---------- */
+
+  .hero{
+    padding: 76px 0 64px;
+  }
+
+  .hero .role-line{
+    font-size: 0.95rem;
+    color: var(--brass-deep);
+    font-family: 'Spectral', serif;
+    font-style: italic;
+    margin-bottom: 18px;
+    opacity: 0;
+  }
+
+  .hero h1{
+    font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+    line-height: 1.14;
+    max-width: 15ch;
+    letter-spacing: -0.01em;
+    opacity: 0;
+  }
+
+  .hero .sub{
+    margin-top: 24px;
+    max-width: 54ch;
+    font-size: 1.06rem;
+    color: var(--ink-soft);
+    opacity: 0;
+  }
+
+  .hero .cta-row{
+    margin-top: 34px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    opacity: 0;
+  }
+
+  .btn{
+    display: inline-block;
+    padding: 12px 22px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1.5px solid var(--ink);
+    border-radius: 2px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .btn.primary{ background: var(--ink); color: var(--paper); }
+  .btn.primary:hover{ background: var(--brass-deep); border-color: var(--brass-deep); }
+  .btn.ghost{ background: transparent; color: var(--ink); }
+  .btn.ghost:hover{ background: var(--ink); color: var(--paper); }
+
+  @keyframes rise{
+    from{ opacity: 0; transform: translateY(10px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+
+  .hero.play .role-line{ animation: rise 0.6s ease 0.05s forwards; }
+  .hero.play h1{ animation: rise 0.7s ease 0.18s forwards; }
+  .hero.play .sub{ animation: rise 0.6s ease 0.38s forwards; }
+  .hero.play .cta-row{ animation: rise 0.6s ease 0.54s forwards; }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero .role-line, .hero h1, .hero .sub, .hero .cta-row{ opacity: 1; animation: none !important; }
+  }
+
+  /* ---------- Section shell ---------- */
+
+  section{ padding: 56px 0; border-top: 1px solid var(--rule); }
+
+  .section-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 34px;
+    flex-wrap: wrap;
+  }
+
+  .section-head h2{
+    font-size: 1.5rem;
+  }
+
+  .section-head .note{
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    font-style: italic;
+    font-family: 'Spectral', serif;
+  }
+
+  /* ---------- Ledger (track record) ---------- */
+
+  .ledger{
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+  }
+
+  .ledger-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    gap: 20px;
+  }
+
+  .ledger-row:last-child{ border-bottom: none; }
+
+  .ledger-row .desc{
+    font-size: 1rem;
+    max-width: 46ch;
+  }
+
+  .ledger-row .desc .context{
+    display: block;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    margin-top: 3px;
+  }
+
+  .ledger-row .figure{
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--brass-deep);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Experience ---------- */
+
+  .role{
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 24px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .role:first-of-type{ padding-top: 0; }
+  .role:last-of-type{ border-bottom: none; }
+
+  .role .when{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    padding-top: 5px;
+    line-height: 1.5;
+  }
+
+  .role h3{
+    font-size: 1.18rem;
+    font-weight: 600;
+  }
+
+  .role .org{
+    font-style: italic;
+    font-weight: 400;
+    color: var(--brass-deep);
+  }
+
+  .role ul{
+    margin: 14px 0 0;
+    padding-left: 18px;
+    color: var(--ink-soft);
+  }
+
+  .role li{ margin-bottom: 7px; font-size: 0.96rem; }
+
+  .role.minor .when{ opacity: 0.85; }
+  .role.minor h3{ font-size: 1.05rem; }
+
+  @media (max-width: 640px){
+    .role{ grid-template-columns: 1fr; gap: 6px; }
+    .role .when{ padding-top: 0; }
+  }
+
+  /* ---------- Competencies ---------- */
+
+  .comp-list{
+    columns: 2;
+    column-gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .comp-list li{
+    break-inside: avoid;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.98rem;
+  }
+
+  @media (max-width: 640px){
+    .comp-list{ columns: 1; }
+  }
+
+  /* ---------- Appendix grid (languages/tools) ---------- */
+
+  .appendix{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 34px 40px;
+  }
+
+  .appendix .col h3{
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink-faint);
+    text-transform: none;
+    letter-spacing: 0.02em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ink);
+    margin-bottom: 12px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .appendix .col p{
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 640px){
+    .appendix{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Education / Training ---------- */
+
+  .split{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  .split h3{
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-faint);
+    margin-bottom: 16px;
+  }
+
+  .entry{ margin-bottom: 18px; }
+  .entry .title{ font-weight: 600; font-size: 1rem; }
+  .entry .place{ color: var(--ink-soft); font-size: 0.92rem; }
+  .entry .date{ font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--ink-faint); margin-top: 3px; }
+
+  @media (max-width: 640px){
+    .split{ grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ---------- Close / signature ---------- */
+
+  .close{
+    text-align: left;
+  }
+
+  .close h2{
+    font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+    max-width: 20ch;
+    line-height: 1.25;
+  }
+
+  .close .sub{
+    margin-top: 16px;
+    color: var(--ink-soft);
+    max-width: 50ch;
+  }
+
+  .signature{
+    margin-top: 44px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .signature .mark{
+    font-family: 'Spectral', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 2.4rem;
+    color: var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 6px;
+  }
+
+  .signature .meta{
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    text-align: right;
+  }
+
+  footer{
+    border-top: 1px solid var(--rule);
+    padding: 26px 0 40px;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+  }
+
+  /* focus visibility */
+  a:focus-visible, .btn:focus-visible{
+    outline: 2px solid var(--brass-deep);
+    outline-offset: 2px;
+  }
+
+</style>
+</head>
+<body>
+
+  <header class="letterhead">
+    <div class="wrap">
+      <div class="name serif">Miklós Erdei</div>
+      <div class="contact">
+        <span>Budapest, Hungary</span>
+        <a href="tel:+36303771653">+36 30 377 1653</a>
+        <a href="mailto:erdei.miklos@yahoo.com">erdei.miklos@yahoo.com</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero play" style="border-top:none;">
+    <div class="wrap">
+      <div class="role-line">B2B Sales &amp; Account Management</div>
+      <h1>Ten years of turning first conversations into signed agreements.</h1>
+      <p class="sub">Bilingual, consultative sales professional building revenue with municipalities, FMCG brands and industrial accounts alike — by translating what a client actually needs into a proposal they're ready to sign.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:erdei.miklos@yahoo.com">Email me</a>
+        <a class="btn ghost" href="tel:+36303771653">Call +36 30 377 1653</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="record">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Statement of track record</h2>
+        <span class="note">as it stands, 2026</span>
+      </div>
+      <div class="ledger">
+        <div class="ledger-row">
+          <div class="desc">Municipal B2B deals closed since 2023
+            <span class="context">Full sales cycle — prospecting through close, Munipolis s.r.o.</span>
+          </div>
+          <div class="figure" data-count="100" data-suffix="+">0</div>
+        </div>
+        <div class="ledger-row">
+          <div class="desc">Net revenue secured in a single account
+            <span class="context">FMCG &amp; industrial portfolio, Luxpack Kft.</span>
+          </div>
+          <div class="figure" data-count="20" data-suffix="M HUF">0</div>
+        </div>
+        <div class="ledger-row">
+          <div class="desc">Sales growth delivered in 12 months
+            <span class="context">New pipeline built from scratch, Eurostanc Kft.</span>
+          </div>
+          <div class="figure" data-count="15" data-suffix="M+ HUF">0</div>
+        </div>
+        <div class="ledger-row">
+          <div class="desc">Years in consultative B2B sales
+            <span class="context">Across SaaS, industrial, FMCG and public-sector clients</span>
+          </div>
+          <div class="figure" data-count="10" data-suffix="+">0</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Professional experience</h2>
+      </div>
+
+      <div class="role">
+        <div class="when">Nov 2023<br>— Present</div>
+        <div>
+          <h3>Senior Inside Sales Representative <span class="org">— Munipolis s.r.o.</span></h3>
+          <ul>
+            <li>Owns the full B2B sales cycle — prospecting, qualification, consultative pitching, and closing — with over 100 deals signed with Hungarian municipal clients, including mayors and communications managers.</li>
+            <li>Tailors value propositions to each stakeholder's priorities, translating public-sector needs into structured, decision-ready proposals.</li>
+            <li>Partners closely with the Customer Success team on onboarding for a smooth handover and long-term account health.</li>
+            <li>Delivers online and in-person presentations to senior decision-makers, managing multi-stakeholder sales cycles.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">Jan 2020<br>— Oct 2023</div>
+        <div>
+          <h3>Key Account Manager <span class="org">— Luxpack Kft.</span></h3>
+          <ul>
+            <li>Managed and grew a portfolio of FMCG and industrial accounts in a price-sensitive, competitive market, securing a ~20 million HUF net revenue agreement through structured account planning.</li>
+            <li>Researched customer priorities and market trends to identify differentiated value propositions and new business within existing accounts.</li>
+            <li>Acted as primary interface between customers and suppliers, coordinating order and backlog management and resolving operational issues.</li>
+            <li>Segmented the customer base to prioritize retention and growth, contributing directly to sustained satisfaction.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role minor">
+        <div class="when">Feb 2019<br>— Dec 2019</div>
+        <div>
+          <h3>Recruitment Specialist <span class="org">— Globe-Job Team Kft.</span></h3>
+          <ul>
+            <li>Managed end-to-end recruitment for client companies, including candidate sourcing, interviewing, and daily communication with clients and affiliate partners.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role minor">
+        <div class="when">Dec 2018<br>— Jan 2019</div>
+        <div>
+          <h3>Freelance Translator &amp; Copywriter <span class="org">— Text United GmbH</span></h3>
+          <ul>
+            <li>Delivered translation, copywriting, and content-editing work across economics, marketing, legal, and technology domains for international clients.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">Nov 2015<br>— Nov 2018</div>
+        <div>
+          <h3>Sales &amp; Financial Associate <span class="org">— Eurostanc Kft.</span></h3>
+          <ul>
+            <li>Built a sales pipeline database for the Hungarian printing and packaging market, growing sales by over 15 million HUF net worth within 12 months.</li>
+            <li>Managed customer care, new customer acquisition, international purchasing, and monthly/annual reporting, alongside management and accounting administration.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role minor">
+        <div class="when">Jan 2013<br>— May 2015</div>
+        <div>
+          <h3>IT Project Associate &amp; Office Manager <span class="org">— Sportomato Kft.</span></h3>
+          <ul>
+            <li>Managed online marketing campaigns and market research; maintained a healthy pipeline and conducted software testing, web analytics and user experiments to inform product decisions.</li>
+            <li>Handled HR administration, office management and user relationship management.</li>
+            <li>Contributed to the company's selection for Oxygen Accelerator's 2014 London finals and supported market entry into New York City and Budapest.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="competencies">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Core competencies</h2>
+      </div>
+      <ul class="comp-list">
+        <li>Consultative B2B sales</li>
+        <li>Account &amp; relationship management</li>
+        <li>Business case development</li>
+        <li>Stakeholder &amp; vendor management</li>
+        <li>CRM data &amp; pipeline management</li>
+        <li>Market &amp; competitor analysis</li>
+        <li>Cross-functional collaboration</li>
+        <li>AI-assisted productivity tools</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="appendix">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Languages &amp; tools</h2>
+      </div>
+      <div class="appendix">
+        <div class="col">
+          <h3>Languages</h3>
+          <p>Hungarian (native) · English (fluent) · Spanish (basic)</p>
+        </div>
+        <div class="col">
+          <h3>CRM &amp; sales tools</h3>
+          <p>Pipedrive, CloudTalk, Trello, Asana, JIRA</p>
+        </div>
+        <div class="col">
+          <h3>Analytics &amp; reporting</h3>
+          <p>Microsoft Excel, SPSS, Google Analytics</p>
+        </div>
+        <div class="col">
+          <h3>Productivity</h3>
+          <p>Microsoft Office, Google Workspace, Slack, Flowdock, Discord, AI-assisted productivity tools</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Education &amp; training</h2>
+      </div>
+      <div class="split">
+        <div>
+          <h3>Education</h3>
+          <div class="entry">
+            <div class="title">MA in Sociology</div>
+            <div class="place">Pázmány Péter Catholic University, Faculty of Humanities, Hungary</div>
+            <div class="date">Sep 2005 — Jun 2012</div>
+          </div>
+          <div class="entry">
+            <div class="title">Business Administration Programme, Erasmus Scholarship</div>
+            <div class="place">Bifröst University, Iceland</div>
+            <div class="date">Sep — Dec 2010</div>
+          </div>
+        </div>
+        <div>
+          <h3>Training &amp; courses</h3>
+          <div class="entry">
+            <div class="title">Sales &amp; Persuasion</div>
+            <div class="place">MasterClass</div>
+            <div class="date">2021</div>
+          </div>
+          <div class="entry">
+            <div class="title">Applied Scrum for Project Management</div>
+            <div class="place">edX.org</div>
+            <div class="date">2018</div>
+          </div>
+          <div class="entry">
+            <div class="title">Profit Generation using Google AdWords</div>
+            <div class="place">Drive Online Marketing</div>
+            <div class="date">2016</div>
+          </div>
+          <div class="entry">
+            <div class="title">Introduction to Marketing</div>
+            <div class="place">Coursera / University of Pennsylvania</div>
+            <div class="date">2014</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="close">
+    <div class="wrap">
+      <h2>Ready to put this track record to work for your team.</h2>
+      <p class="sub">Open to B2B sales and account management roles across SaaS, industrial and services markets — in Budapest or remote across a Hungarian-English speaking market.</p>
+      <div class="signature">
+        <div class="mark">Miklós Erdei</div>
+        <div class="meta">erdei.miklos@yahoo.com<br>+36 30 377 1653</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">Budapest, Hungary</div>
+  </footer>
+
+<script>
+  // Hero entrance is handled purely by CSS (.play class already present on load).
+
+  // Count-up animation for the ledger figures, triggered once when scrolled into view.
+  const figures = document.querySelectorAll('.figure[data-count]');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animateFigure(el){
+    const target = parseInt(el.getAttribute('data-count'), 10);
+    const suffix = el.getAttribute('data-suffix') || '';
+    if(prefersReduced){
+      el.textContent = target + suffix;
+      return;
+    }
+    const duration = 900;
+    const start = performance.now();
+    function tick(now){
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = Math.round(target * eased);
+      el.textContent = val + suffix;
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          animateFigure(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    figures.forEach(f => io.observe(f));
+  } else {
+    figures.forEach(f => animateFigure(f));
+  }
+</script>
+
+</body>
+</html>
