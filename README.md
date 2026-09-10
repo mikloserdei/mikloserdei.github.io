@@ -477,7 +477,7 @@
     <div class="wrap hero-grid">
       <div class="hero-text">
         <div class="role-line">B2B Sales &amp; Account Management</div>
-        <h1>Ten years of turning first conversations into signed agreements.</h1>
+        <h1>10+ years of turning first conversations into signed agreements.</h1>
         <p class="sub">Bilingual, consultative sales professional building revenue with municipalities, FMCG brands and industrial accounts alike — by translating what a client actually needs into a proposal they're ready to sign.</p>
         <div class="cta-row">
           <a class="btn primary" href="mailto:erdei.miklos@yahoo.com">Email me</a>
